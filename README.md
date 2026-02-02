@@ -1,50 +1,66 @@
-# Welcome to your Expo app 👋
+# IMS Scan
 
-This is an [Expo](https://expo.dev) project created with [`create-expo-app`](https://www.npmjs.com/package/create-expo-app).
+**IMS Scan** is a professional mobile inventory management application built with Expo and React Native. It features a high-performance barcode scanner, a real-time stock validation system, and a multi-item cart flow.
 
-## Get started
+## Key Features
 
-1. Install dependencies
+-   **Secure Authentication**: Fully integrated login system using `AuthContext` and Supabase.
+-   **Precision Barcode Scanner**: 
+    -   Restricted scan area (blue guide box) for accurate targeting.
+    -   Animated scanning line for visual feedback.
+    -   Ignores barcodes outside the designated focus area.
+-   **Real-time Stock Validation**: 
+    -   Instantly fetches current stock levels from the database upon scanning.
+    -   Visually flags low stock (under 10 units) in red.
+    -   Prevents adding items to the cart if requested quantity exceeds available stock.
+-   **Multi-Item Cart System**: 
+    -   Scan multiple items and add them to a local cart.
+    -   Floating cart badge and checkout modal.
+    -   Consolidate multiple items into a single order record in Supabase.
+-   **Standalone Android APK**: Optimized for native deployment without requiring Expo Go.
 
-   ```bash
-   npm install
-   ```
+## 🛠 Tech Stack
 
-2. Start the app
+-   **Frontend**: React Native, Expo (SDK 54), Expo Router.
+-   **Database/Backend**: Supabase (PostgreSQL), FastAPI (Python).
+-   **Scanning**: `expo-camera`.
+-   **Storage**: `expo-secure-store` for session management.
 
-   ```bash
-   npx expo start
-   ```
+## Getting Started
 
-In the output, you'll find options to open the app in a
-
-- [development build](https://docs.expo.dev/develop/development-builds/introduction/)
-- [Android emulator](https://docs.expo.dev/workflow/android-studio-emulator/)
-- [iOS simulator](https://docs.expo.dev/workflow/ios-simulator/)
-- [Expo Go](https://expo.dev/go), a limited sandbox for trying out app development with Expo
-
-You can start developing by editing the files inside the **app** directory. This project uses [file-based routing](https://docs.expo.dev/router/introduction).
-
-## Get a fresh project
-
-When you're ready, run:
-
+### 1. Install Dependencies
 ```bash
-npm run reset-project
+npm install
 ```
 
-This command will move the starter code to the **app-example** directory and create a blank **app** directory where you can start developing.
+### 2. Configure Environment Variables
+Create a `.env` file in the root with your Supabase and API credentials:
+```text
+EXPO_PUBLIC_SUPABASE_URL=your_url
+EXPO_PUBLIC_SUPABASE_ANON_KEY=your_key
+EXPO_PUBLIC_API_URL=your_api_url
+```
 
-## Learn more
+### 3. Start Local Development
+```bash
+npx expo start --port 8082 --tunnel --clear
+```
 
-To learn more about developing your project with Expo, look at the following resources:
+## Deployment (EAS Build)
 
-- [Expo documentation](https://docs.expo.dev/): Learn fundamentals, or go into advanced topics with our [guides](https://docs.expo.dev/guides).
-- [Learn Expo tutorial](https://docs.expo.dev/tutorial/introduction/): Follow a step-by-step tutorial where you'll create a project that runs on Android, iOS, and the web.
+The app is branded as **IMS Scan** with a custom professional logo.
 
-## Join the community
+### Push UI/Logic Updates (OTA)
+If you only change `.tsx` files:
+```bash
+npx eas update --branch main --message "Update description"
+```
 
-Join our community of developers creating universal apps.
+### New Standalone APK
+If you change app settings or native modules:
+```bash
+npx eas build -p android --profile preview
+```
 
-- [Expo on GitHub](https://github.com/expo/expo): View our open source platform and contribute.
-- [Discord community](https://chat.expo.dev): Chat with Expo users and ask questions.
+---
+*Created for Inventory Management Systems.*
