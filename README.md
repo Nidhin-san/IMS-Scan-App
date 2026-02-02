@@ -19,7 +19,7 @@
     -   Consolidate multiple items into a single order record in Supabase.
 -   **Standalone Android APK**: Optimized for native deployment without requiring Expo Go.
 
-## 🛠 Tech Stack
+## Tech Stack
 
 -   **Frontend**: React Native, Expo (SDK 54), Expo Router.
 -   **Database/Backend**: Supabase (PostgreSQL), FastAPI (Python).
